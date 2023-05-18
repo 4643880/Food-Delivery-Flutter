@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery/screens/main_food_page.dart';
+import 'package:food_delivery/config/routes.dart';
+import 'package:food_delivery/screens/main_food_screen.dart';
+import 'package:food_delivery/screens/popular_food_details_screen.dart';
 import 'package:get/get.dart';
 
 import 'helper/dimentions.dart';
@@ -26,9 +28,14 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const MainFoodPage(),
+          initialRoute: routeMainFoodScreen,
+          getPages: Routes.routes,
+          defaultTransition: Transition.rightToLeft,
+          transitionDuration: const Duration(milliseconds: 800),
         );
       },
     );
   }
 }
+
+//3:30
