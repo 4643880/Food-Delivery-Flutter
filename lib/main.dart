@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          initialRoute: routeMainFoodScreen,
+          initialRoute: routeBranches,
           getPages: Routes.routes,
           defaultTransition: Transition.rightToLeft,
           transitionDuration: const Duration(milliseconds: 500),
