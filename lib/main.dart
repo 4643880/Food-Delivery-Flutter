@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
-import 'package:food_delivery/screens/main_food_screen.dart';
-import 'package:food_delivery/screens/popular_food_details_screen.dart';
 import 'package:get/get.dart';
-
-import 'helper/dimentions.dart';
+import 'helper/helper.dart' as di;
 
 void main() {
   runApp(const MyApp());
+  di.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -31,11 +29,12 @@ class MyApp extends StatelessWidget {
           initialRoute: routeMainFoodScreen,
           getPages: Routes.routes,
           defaultTransition: Transition.rightToLeft,
-          transitionDuration: const Duration(milliseconds: 800),
+          transitionDuration: const Duration(milliseconds: 500),
         );
       },
     );
   }
 }
 
-//3:30
+//3:54
+

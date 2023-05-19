@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery/components/big_text.dart';
-import 'package:food_delivery/components/small_text.dart';
+import 'package:food_delivery/components/custom_big_text.dart';
+import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 
 class AppBarHeaderWidget extends StatelessWidget {

@@ -13,7 +13,7 @@ class Routes {
     ),
     GetPage(
       name: routePopularFoodDetials,
-      page: () => PopularFoodDetails(),
+      page: () => const PopularFoodDetails(),
     ),
   ];
 }

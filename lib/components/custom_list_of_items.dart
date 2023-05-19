@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery/components/big_text.dart';
-import 'package:food_delivery/components/icon_and_text_widget.dart';
+import 'package:food_delivery/components/custom_big_text.dart';
+import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'package:get/get.dart';
