@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
+import 'package:food_delivery/helper/dependencies.dart' as di;
 import 'package:get/get.dart';
-import 'helper/helper.dart' as di;
 
 void main() {
-  runApp(const MyApp());
+  // it will ensure that dependencies has loaded
+  WidgetsFlutterBinding.ensureInitialized();
   di.init();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -36,5 +38,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//3:54
-
+//6:30

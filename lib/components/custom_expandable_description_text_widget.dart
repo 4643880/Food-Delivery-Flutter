@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery/controller/height_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +42,6 @@ class _ExpandableDescriptionTextWidgetState
 
   @override
   Widget build(BuildContext context) {
-    HeightController myController = Get.find();
     return LayoutBuilder(
       builder: (p0, constraints) => secondHalf.isEmpty
           ? Text(
@@ -57,7 +55,8 @@ class _ExpandableDescriptionTextWidgetState
                 Text(
                   flag ? (firstHalf + "...") : (firstHalf + secondHalf),
                   textAlign: TextAlign.justify,
-                  style: TextStyle(color: AppColors.textColor, height: 1.7),
+                  style:
+                      const TextStyle(color: AppColors.textColor, height: 1.7),
                   // maxLines: constraints.maxWidth > 640 ? 12 : 18,
                   // overflow: TextOverflow.ellipsis,
                 ),

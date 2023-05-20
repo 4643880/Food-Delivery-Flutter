@@ -6,7 +6,6 @@ import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/components/custom_title_rating_comments_section.dart';
 import 'package:food_delivery/components/custom_expandable_description_text_widget.dart';
-import 'package:food_delivery/controller/height_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'package:food_delivery/helper/dimentions.dart';
 import 'package:get/get.dart';
@@ -19,7 +18,6 @@ class PopularFoodDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HeightController myController = Get.find();
     devtools.log(1.sw.toString());
     devtools.log(1.sh.toString());
     return Scaffold(
