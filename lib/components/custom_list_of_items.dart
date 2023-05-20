@@ -31,7 +31,7 @@ class ListOfItemsWidget extends StatelessWidget {
                 ),
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(routePopularFoodDetials);
+                    Get.toNamed(routeRecommendedFoodDetails);
                   },
                   child: Row(
                     children: [
