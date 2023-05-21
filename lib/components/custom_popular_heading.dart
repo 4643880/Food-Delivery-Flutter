@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 
-class PopularHeadingWidget extends StatelessWidget {
-  const PopularHeadingWidget({
+class RecommendedHeadingWidget extends StatelessWidget {
+  const RecommendedHeadingWidget({
     super.key,
   });
 
@@ -25,8 +25,8 @@ class PopularHeadingWidget extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: SmallText(
-                  text: "Popular",
-                  size: 22.sp,
+                  text: "Recommended",
+                  size: 16.sp,
                   color: const Color(0xFF332d2b),
                 ),
               ),

@@ -46,7 +46,11 @@ class _ExpandableDescriptionTextWidgetState
       builder: (p0, constraints) => secondHalf.isEmpty
           ? Text(
               firstHalf,
-              textAlign: TextAlign.end,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  color: AppColors.textColor, height: 1.8, fontSize: 20.sp),
+              // maxLines: constraints.maxWidth > 640 ? 12 : 18,
+              // overflow: TextOverflow.ellipsis,
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
@@ -55,8 +59,8 @@ class _ExpandableDescriptionTextWidgetState
                 Text(
                   flag ? (firstHalf + "...") : (firstHalf + secondHalf),
                   textAlign: TextAlign.justify,
-                  style:
-                      const TextStyle(color: AppColors.textColor, height: 1.7),
+                  style: TextStyle(
+                      color: AppColors.textColor, height: 1.8, fontSize: 20.sp),
                   // maxLines: constraints.maxWidth > 640 ? 12 : 18,
                   // overflow: TextOverflow.ellipsis,
                 ),

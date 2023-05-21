@@ -3,24 +3,31 @@ import 'package:food_delivery/screens/home/main_food_screen.dart';
 import 'package:food_delivery/screens/food/popular_food_details_screen.dart';
 import 'package:get/get.dart';
 
-const routeMainFoodScreen = "/mainFoodScreen";
-const routePopularFoodDetials = "/popularFood";
-const routeInternetNotAvailable = '/InternetNotAvailable';
-const routeRecommendedFoodDetails = "/recommendFoodDetails";
+class RouteHelper {
+  static const initial = "/";
+  static const routeMainFoodScreen = "/mainFoodScreen";
+  static const routePopularFoodDetials = "/popularFood";
+  static const routeInternetNotAvailable = '/InternetNotAvailable';
+  static const routeRecommendedFoodDetails = "/recommendFoodDetails";
 
-class Routes {
-  static final routes = [
+  static List<GetPage> routes = [
     GetPage(
-      name: routeMainFoodScreen,
+      name: RouteHelper.initial,
       page: () => const MainFoodPage(),
     ),
     GetPage(
-      name: routePopularFoodDetials,
-      page: () => const PopularFoodDetails(),
+      name: RouteHelper.routeMainFoodScreen,
+      page: () => const MainFoodPage(),
     ),
     GetPage(
-      name: routeRecommendedFoodDetails,
-      page: () => const RecommendedFoodDetails(),
+      name: RouteHelper.routePopularFoodDetials,
+      page: () => PopularFoodDetails(),
+    ),
+    GetPage(
+      name: RouteHelper.routeRecommendedFoodDetails,
+      page: () => RecommendedFoodDetails(),
+      transitionDuration: const Duration(milliseconds: 400),
+      transition: Transition.zoom,
     ),
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
+import 'package:food_delivery/controller/popular_product_controller.dart';
 import 'package:food_delivery/helper/dependencies.dart' as di;
 import 'package:get/get.dart';
 
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    PopularProductController controller = Get.find();
+    controller.getPopularProductListFunc();
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -25,17 +28,14 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Food Delivery',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          initialRoute: routeMainFoodScreen,
-          getPages: Routes.routes,
+          initialRoute: RouteHelper.initial,
+          getPages: RouteHelper.routes,
           defaultTransition: Transition.rightToLeft,
-          transitionDuration: const Duration(milliseconds: 500),
+          transitionDuration: const Duration(milliseconds: 400),
         );
       },
     );
   }
 }
 
-//6:30
+//7:15

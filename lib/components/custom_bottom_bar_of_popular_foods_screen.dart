@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/helper/app_colors.dart';
+import 'package:food_delivery/models/product_model.dart';
 
 class BottonBarOfPopularFoodScreen extends StatelessWidget {
+  final Products eachProduct;
   const BottonBarOfPopularFoodScreen({
     super.key,
+    required this.eachProduct,
   });
 
   @override
@@ -63,7 +66,7 @@ class BottonBarOfPopularFoodScreen extends StatelessWidget {
               borderRadius: BorderRadius.all(const Radius.circular(12).r),
             ),
             child: SmallText(
-              text: "\$0.08 Add to Cart",
+              text: "\$ ${eachProduct.price} Add to Cart",
               size: 15.sp,
               color: Colors.white,
             ),

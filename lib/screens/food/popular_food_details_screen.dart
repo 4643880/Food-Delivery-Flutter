@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_bottom_bar_of_popular_foods_screen.dart';
-import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
-import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/components/custom_title_rating_comments_section.dart';
 import 'package:food_delivery/components/custom_expandable_description_text_widget.dart';
 import 'package:food_delivery/helper/app_colors.dart';
-import 'package:food_delivery/helper/dimentions.dart';
+import 'package:food_delivery/models/product_model.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
 import '../../components/custom_icon_button.dart';
-import '../../config/routes.dart';
 
 class PopularFoodDetails extends StatelessWidget {
-  const PopularFoodDetails({super.key});
+  Products eachProduct = Get.arguments;
+  PopularFoodDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +33,11 @@ class PopularFoodDetails extends StatelessWidget {
               child: Container(
                 height: constraints.maxWidth > 640 ? 1.sh / 4.50 : 1.sh / 2.50,
                 width: double.maxFinite,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/food0.png"),
+                    image: NetworkImage(
+                        "${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${eachProduct.img!}"),
                   ),
                 ),
               ),
@@ -123,7 +123,9 @@ class PopularFoodDetails extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.white,
-      bottomNavigationBar: const BottonBarOfPopularFoodScreen(),
+      bottomNavigationBar: BottonBarOfPopularFoodScreen(
+        eachProduct: eachProduct,
+      ),
     );
   }
 }

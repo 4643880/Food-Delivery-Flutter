@@ -7,15 +7,19 @@ import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/components/custom_title_rating_comments_section.dart';
 import 'package:food_delivery/config/routes.dart';
+import 'package:food_delivery/controller/popular_product_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'dart:developer' as devtools show log;
 
 import 'package:food_delivery/helper/dimentions.dart';
+import 'package:food_delivery/models/product_model.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/extra_function.dart';
 import 'package:get/get.dart';
 
 class HomePageSlider extends StatefulWidget {
-  const HomePageSlider({super.key});
+  final PopularProductController controller;
+  const HomePageSlider({super.key, required this.controller});
 
   @override
   State<HomePageSlider> createState() => _HomePageSliderState();
@@ -55,27 +59,50 @@ class _HomePageSliderState extends State<HomePageSlider> {
         // ======================================================
         // Slider
         // ======================================================
-        Container(
-          // color: Colors.red,
-          height: 250.h,
-          // color: Colors.red,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return buildPageViewMethod(index);
-            },
+        GetBuilder<PopularProductController>(
+          builder: (controller) => Container(
+            // color: Colors.red,
+            height: 320.h,
+            // color: Colors.red,
+            child: widget.controller.isLoaded == false
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.mainColor,
+                    ),
+                  )
+                : PageView.builder(
+                    controller: pageController,
+                    itemCount: widget.controller.getPopularProductList.length,
+                    itemBuilder: (context, index) {
+                      final eachProduct =
+                          widget.controller.getPopularProductList[index];
+                      return buildPageViewMethod(
+                        index: index,
+                        eachProduct: eachProduct,
+                      );
+                    },
+                  ),
           ),
         ),
         // ======================================================
         // Dots Indicator For Slider
         // ======================================================
-        DotsIndicatorWidget(currentPageValue: currentPageValue),
+        GetBuilder<PopularProductController>(
+          builder: (controller) {
+            return DotsIndicatorWidget(
+              currentPageValue: currentPageValue,
+              controller: controller,
+            );
+          },
+        ),
       ],
     );
   }
 
-  Widget buildPageViewMethod(int index) {
+  Widget buildPageViewMethod({
+    required int index,
+    required Products eachProduct,
+  }) {
     return Transform(
       transform: sliderTransformationMethod(
         index: index,
@@ -85,20 +112,20 @@ class _HomePageSliderState extends State<HomePageSlider> {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed(routePopularFoodDetials);
+          Get.toNamed(RouteHelper.routePopularFoodDetials,
+              arguments: eachProduct);
         },
         child: Stack(
           children: [
             Container(
-              height: 180.h,
+              height: 220.h,
               margin: const EdgeInsets.only(bottom: 60, right: 5, left: 5).r,
               decoration: BoxDecoration(
                 color: index.isEven ? Colors.blue : Colors.orange,
                 borderRadius: BorderRadius.circular(30).r,
-                image: const DecorationImage(
-                  image: AssetImage(
-                    "assets/images/food0.png",
-                  ),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${eachProduct.img!}"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -133,8 +160,9 @@ class _HomePageSliderState extends State<HomePageSlider> {
                     ),
                   ],
                 ),
-                child: const SingleChildScrollView(
-                  child: TitleRatingCommentsSectionWidget(text: "Chinese Side"),
+                child: SingleChildScrollView(
+                  child:
+                      TitleRatingCommentsSectionWidget(text: eachProduct.name!),
                 ),
               ),
             ),
