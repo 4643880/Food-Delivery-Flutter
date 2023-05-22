@@ -17,6 +17,7 @@ class ListOfItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RecommendedProductController myController = Get.find();
     return controller.isLoaded == false
         ? const Center(
             child: CircularProgressIndicator(
@@ -53,6 +54,7 @@ class ListOfItemsWidget extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
+                          myController.initProduct(product: eachProduct);
                           Get.toNamed(
                             RouteHelper.routeRecommendedFoodDetails,
                             arguments: eachProduct,

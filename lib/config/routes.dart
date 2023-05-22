@@ -1,6 +1,7 @@
 import 'package:food_delivery/screens/food/recommended_food_details.dart';
 import 'package:food_delivery/screens/home/main_food_screen.dart';
 import 'package:food_delivery/screens/food/popular_food_details_screen.dart';
+import 'package:food_delivery/getx_widgets_practice/get_responsive_file.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
@@ -13,6 +14,7 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(
       name: RouteHelper.initial,
+      // page: () => ResponsiveView(),
       page: () => const MainFoodPage(),
     ),
     GetPage(

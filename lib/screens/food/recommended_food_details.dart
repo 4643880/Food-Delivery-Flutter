@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_expandable_description_text_widget.dart';
 import 'package:food_delivery/components/custom_icon_button.dart';
+import 'package:food_delivery/controller/recommended_product_controller.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -36,12 +37,42 @@ class RecommendedFoodDetails extends StatelessWidget {
                     Get.back();
                   },
                 ),
-                MyCustomIconButton(
-                  icon: Icons.shopping_cart_outlined,
-                  backgroundColor: AppColors.buttonBackgroundColor,
-                  size: 50,
-                  function: () {},
-                ),
+                GetBuilder<RecommendedProductController>(builder: (controller) {
+                  return Stack(
+                    children: [
+                      MyCustomIconButton(
+                        icon: Icons.shopping_cart_outlined,
+                        backgroundColor: AppColors.buttonBackgroundColor,
+                        size: 50,
+                        function: () {},
+                      ),
+                      (controller.totalItems > 1)
+                          ? Positioned(
+                              top: 3,
+                              right: 3,
+                              child: Container(
+                                height: 20.h,
+                                width: 20.h,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: AppColors.mainColor,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Text(
+                                  controller.totalItems.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 11.sp),
+                                ),
+                              ),
+                            )
+                          : Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Container(),
+                            ),
+                    ],
+                  );
+                }),
               ],
             ),
             bottom: PreferredSize(
@@ -96,22 +127,33 @@ class RecommendedFoodDetails extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MyCustomIconButton(
-                  icon: Icons.remove,
-                  function: () {},
-                  backgroundColor: AppColors.mainColor,
-                  iconColor: Colors.white,
+                GetBuilder<RecommendedProductController>(
+                  builder: (controller) => MyCustomIconButton(
+                    icon: Icons.remove,
+                    function: () {
+                      controller.setQuantity(false);
+                    },
+                    backgroundColor: AppColors.mainColor,
+                    iconColor: Colors.white,
+                  ),
                 ),
-                BigText(
-                  text: "\$ ${eachProduct.price} X 0",
-                  color: Colors.black,
-                  size: 20.sp,
+                GetBuilder<RecommendedProductController>(
+                  builder: (controller) => BigText(
+                    text:
+                        "\$ ${eachProduct.price} X ${controller.inCartQuantity}",
+                    color: Colors.black,
+                    size: 20.sp,
+                  ),
                 ),
-                MyCustomIconButton(
-                  icon: Icons.add,
-                  function: () {},
-                  backgroundColor: AppColors.mainColor,
-                  iconColor: Colors.white,
+                GetBuilder<RecommendedProductController>(
+                  builder: (controller) => MyCustomIconButton(
+                    icon: Icons.add,
+                    function: () {
+                      controller.setQuantity(true);
+                    },
+                    backgroundColor: AppColors.mainColor,
+                    iconColor: Colors.white,
+                  ),
                 ),
               ],
             ),

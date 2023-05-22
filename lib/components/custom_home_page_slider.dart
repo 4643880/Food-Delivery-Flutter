@@ -7,6 +7,7 @@ import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/components/custom_title_rating_comments_section.dart';
 import 'package:food_delivery/config/routes.dart';
+import 'package:food_delivery/controller/cart_controller.dart';
 import 'package:food_delivery/controller/popular_product_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'dart:developer' as devtools show log;
@@ -112,6 +113,9 @@ class _HomePageSliderState extends State<HomePageSlider> {
       ),
       child: InkWell(
         onTap: () {
+          // Initialize the quantity of controller with zero;
+          PopularProductController myController = Get.find();
+          myController.initProduct(product: eachProduct);
           Get.toNamed(RouteHelper.routePopularFoodDetials,
               arguments: eachProduct);
         },
