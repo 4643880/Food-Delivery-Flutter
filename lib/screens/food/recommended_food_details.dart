@@ -46,7 +46,7 @@ class RecommendedFoodDetails extends StatelessWidget {
                         size: 50,
                         function: () {},
                       ),
-                      (controller.totalItems > 1)
+                      (controller.totalItems > 0)
                           ? Positioned(
                               top: 3,
                               right: 3,
