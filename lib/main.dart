@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/controller/popular_product_controller.dart';
-import 'package:food_delivery/helper/dependencies.dart' as di;
+import 'package:food_delivery/helper/get_di.dart' as di;
 import 'package:get/get.dart';
 
 void main() {
@@ -15,7 +15,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     PopularProductController controller = Get.find();
@@ -38,4 +37,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//10:07
+// part 2 11min

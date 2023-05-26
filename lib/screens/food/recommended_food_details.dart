@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_expandable_description_text_widget.dart';
 import 'package:food_delivery/components/custom_icon_button.dart';
+import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/controller/recommended_product_controller.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
@@ -44,7 +45,11 @@ class RecommendedFoodDetails extends StatelessWidget {
                         icon: Icons.shopping_cart_outlined,
                         backgroundColor: AppColors.buttonBackgroundColor,
                         size: 50,
-                        function: () {},
+                        function: () {
+                          if (controller.totalItems > 0) {
+                            Get.toNamed(RouteHelper.routeCartScreen);
+                          }
+                        },
                       ),
                       (controller.totalItems > 0)
                           ? Positioned(
@@ -87,11 +92,14 @@ class RecommendedFoodDetails extends StatelessWidget {
                 ),
                 width: double.maxFinite,
                 padding: const EdgeInsets.only(top: 10, bottom: 10).r,
-                child: Center(
-                    child: BigText(
-                  text: eachProduct.name!,
-                  size: 30,
-                )),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: BigText(
+                    text: eachProduct.name!,
+                    size: 30,
+                  )),
+                ),
               ),
             ),
             expandedHeight: 300.h,

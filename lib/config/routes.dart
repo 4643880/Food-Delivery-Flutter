@@ -1,7 +1,9 @@
+import 'package:food_delivery/helper/bindings.dart';
+import 'package:food_delivery/screens/cart/cart_details_screen.dart';
+import 'package:food_delivery/screens/cart/cart_screen.dart';
 import 'package:food_delivery/screens/food/recommended_food_details.dart';
 import 'package:food_delivery/screens/home/main_food_screen.dart';
 import 'package:food_delivery/screens/food/popular_food_details_screen.dart';
-import 'package:food_delivery/getx_widgets_practice/get_responsive_file.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
@@ -10,6 +12,8 @@ class RouteHelper {
   static const routePopularFoodDetials = "/popularFood";
   static const routeInternetNotAvailable = '/InternetNotAvailable';
   static const routeRecommendedFoodDetails = "/recommendFoodDetails";
+  static const routeCartScreen = "/cartScreen";
+  static const routeCartDetailsScreen = "/cartDetailsScreen";
 
   static List<GetPage> routes = [
     GetPage(
@@ -30,6 +34,19 @@ class RouteHelper {
       page: () => RecommendedFoodDetails(),
       transitionDuration: const Duration(milliseconds: 400),
       transition: Transition.zoom,
+    ),
+    GetPage(
+      name: RouteHelper.routeCartScreen,
+      page: () => const CartScreen(),
+      transitionDuration: const Duration(milliseconds: 400),
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name: RouteHelper.routeCartDetailsScreen,
+      page: () => CartDetailsScreen(),
+      transitionDuration: const Duration(milliseconds: 400),
+      transition: Transition.zoom,
+      // binding: CartBinding(),
     ),
   ];
 }

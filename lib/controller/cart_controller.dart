@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../data/repository/cart_repo.dart';
 import 'dart:developer' as devtools show log;
 
-class CartController extends GetxController {
+class CartController extends GetxController implements GetxService {
   final CartRepo cartRepo;
 
   CartController({required this.cartRepo});
@@ -32,7 +32,10 @@ class CartController extends GetxController {
       items.forEach((key, value) {
         if (key == product.id) {
           tempQuantitiy = value.quantity!;
-          update();
+          // update();
+          Future.delayed(const Duration(milliseconds: 20), () {
+            update();
+          });
         }
       });
     }
@@ -64,6 +67,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity, // old quantity + new quantity
           isExist: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
 
@@ -77,7 +81,10 @@ class CartController extends GetxController {
         );
       }
 
-      update();
+      // update();
+      Future.delayed(const Duration(milliseconds: 20), () {
+        update();
+      });
     } else {
       // Adding Items in Map
       // Each product has unique id because it's primary key
@@ -89,17 +96,21 @@ class CartController extends GetxController {
             //   "Added Item to the Cart Quantity is: $quantity Product Name is: ${product.name}",
             // );
             return CartModel(
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              img: product.img,
-              quantity: quantity,
-              isExist: true,
-              time: DateTime.now().toString(),
-            );
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                img: product.img,
+                quantity: quantity,
+                isExist: true,
+                time: DateTime.now().toString(),
+                product: product);
           },
         );
       }
+      // update();
+      Future.delayed(const Duration(milliseconds: 20), () {
+        update();
+      });
     }
 
     // Log Message
@@ -113,5 +124,19 @@ class CartController extends GetxController {
       totalQuantity += value.quantity!;
     });
     return totalQuantity;
+  }
+
+  List<CartModel> get getListOfCart {
+    // Sample 1
+    List<CartModel> myListOfCart = [];
+    _items.forEach((key, value) {
+      myListOfCart.add(value);
+    });
+    return myListOfCart;
+
+    // Sample 2
+    // _items.entries.map((e) {
+    //   return e.value;
+    // }).toList();
   }
 }

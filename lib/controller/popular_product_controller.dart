@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controller/cart_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
+import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
@@ -25,7 +25,7 @@ class PopularProductController extends GetxController {
 
   // will return old inCartQuantity + new quantity
   int get inCartQuantity => _inCartQuantity + _quantity;
-  CartController myCartController = Get.find();
+  // CartController myCartController = Get.find();
 
   @override
   Future<void> onInit() async {
@@ -66,12 +66,13 @@ class PopularProductController extends GetxController {
   // Most Important Function using this during the navigation to next page
   // Whenever will go to next page through inkwell, first will call this method then navigate
   void initProduct({required Products product}) {
-    final result = myCartController.existInCart(product: product);
+    final result = Get.find<CartController>().existInCart(product: product);
     if (result == true) {
       // Assigning new value to _quantity variable
       // Assigning new value to _inCartQuantity variable
       _quantity = 0;
-      _inCartQuantity = myCartController.getQuantity(product: product);
+      _inCartQuantity =
+          Get.find<CartController>().getQuantity(product: product);
       update();
     } else {
       // Assigning new value to _quantity variable
@@ -85,15 +86,15 @@ class PopularProductController extends GetxController {
   // Quantity is increasing and decreasing in this page
   void addItem(Products product) {
     // Adding Quantity in the Cart
-    myCartController.addItem(product, _quantity);
+    Get.find<CartController>().addItem(product, _quantity);
 
     // assigning new value to _quantity variable
     // Assigning new value to _inCartQuantity variable
     _quantity = 0;
-    _inCartQuantity = myCartController.getQuantity(product: product);
+    _inCartQuantity = Get.find<CartController>().getQuantity(product: product);
     update();
     // Log Message
-    myCartController.items.forEach((key, value) {
+    Get.find<CartController>().items.forEach((key, value) {
       devtools.log(
         "Id is: " +
             value.id.toString() +
@@ -123,11 +124,11 @@ class PopularProductController extends GetxController {
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
-      // assigning new value to _quantity variable
-      // Assigning new value to _inCartQuantity variable
-      _quantity = 0;
-      _inCartQuantity = 0;
-      return 0;
+
+      if (_inCartQuantity > 0) {
+        _quantity = -_inCartQuantity;
+      }
+      return _quantity;
     } else if ((_inCartQuantity + quantity) > 20) {
       Get.snackbar(
         "Item Count",
@@ -142,7 +143,11 @@ class PopularProductController extends GetxController {
   }
 
   int get totalItems {
-    return myCartController.totalItems;
+    return Get.find<CartController>().totalItems;
+  }
+
+  List<CartModel> get listOfCartItems {
+    return Get.find<CartController>().getListOfCart;
   }
 
   updateIsLoading(bool newValue) {

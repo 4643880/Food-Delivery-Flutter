@@ -4,15 +4,12 @@ import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_bottom_bar_of_popular_foods_screen.dart';
 import 'package:food_delivery/components/custom_title_rating_comments_section.dart';
 import 'package:food_delivery/components/custom_expandable_description_text_widget.dart';
+import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/controller/popular_product_controller.dart';
-import 'package:food_delivery/helper/app_colors.dart';
-import 'package:food_delivery/helper/app_colors.dart';
-import 'package:food_delivery/helper/app_colors.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
-import 'dart:developer' as devtools show log;
 import '../../components/custom_icon_button.dart';
 
 class PopularFoodDetails extends StatelessWidget {
@@ -71,7 +68,11 @@ class PopularFoodDetails extends StatelessWidget {
                           icon: Icons.shopping_cart_outlined,
                           backgroundColor: AppColors.buttonBackgroundColor,
                           size: 50,
-                          function: () {},
+                          function: () {
+                            if (controller.totalItems > 0) {
+                              Get.toNamed(RouteHelper.routeCartScreen);
+                            }
+                          },
                         ),
                         (controller.totalItems > 0)
                             ? Positioned(
