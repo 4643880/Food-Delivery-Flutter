@@ -43,16 +43,16 @@ class RecommendedProductController extends GetxController {
   // Implementatino of API
   Future<bool> getRecommendedProductListFunc() async {
     // updateIsLoading(true);
-    Response response = await recommendedProductRepo.getRecommendedFoodList();
+    Response? response = await recommendedProductRepo.getRecommendedFoodList();
 
-    if (response.statusCode == 200) {
+    if (response?.statusCode == 200) {
       // print("reached here");
       // print(response.body);
       // Initializing empty list
       _isLoaded = false;
       update();
       _recommendedProductList = [];
-      final listOfProducts = ProductModel.fromJson(response.body).getProducts;
+      final listOfProducts = ProductModel.fromJson(response?.body).getProducts;
       _recommendedProductList.addAll(listOfProducts!);
       _isLoaded = true;
       update();

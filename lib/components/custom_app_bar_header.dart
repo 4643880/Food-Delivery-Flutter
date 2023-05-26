@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/helper/app_colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AppBarHeaderWidget extends StatelessWidget {
   const AppBarHeaderWidget({
@@ -22,10 +23,14 @@ class AppBarHeaderWidget extends StatelessWidget {
         children: [
           Column(
             children: [
-              BigText(
-                text: "Pakistan",
-                color: AppColors.mainColor,
-                size: 28.sp,
+              Shimmer.fromColors(
+                baseColor: const Color.fromARGB(255, 191, 248, 241),
+                highlightColor: AppColors.mainColor,
+                child: BigText(
+                  text: "Pakistan",
+                  color: AppColors.mainColor,
+                  size: 28.sp,
+                ),
               ),
               Row(
                 children: [

@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 
 import '../helper/app_colors.dart';
 
-class Util {
+class Utils {
   static void showErrorSnackBar(String message) {
     //Form Closing all previous SnackBars
+    if (Get.isSnackbarOpen) {
+      Get.closeAllSnackbars();
+    }
     // if (Get.isSnackbarOpen) {
     //   Get.closeAllSnackbars();
     // }

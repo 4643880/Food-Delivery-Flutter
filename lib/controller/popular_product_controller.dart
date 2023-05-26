@@ -41,16 +41,16 @@ class PopularProductController extends GetxController {
   // API Implementation
   Future<bool> getPopularProductListFunc() async {
     // updateIsLoading(true);
-    Response response = await popularProductRepo.getPopularProductList();
+    Response? response = await popularProductRepo.getPopularProductList();
 
-    if (response.statusCode == 200) {
+    if (response?.statusCode == 200) {
       // print("reached here");
       // print(response.body);
       // Initializing empty list
       _isLoaded = false;
       update();
       _popularProductList = [];
-      final listOfProducts = ProductModel.fromJson(response.body).getProducts;
+      final listOfProducts = ProductModel.fromJson(response?.body).getProducts;
       _popularProductList.addAll(listOfProducts!);
       _isLoaded = true;
       update();

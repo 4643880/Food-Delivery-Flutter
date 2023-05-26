@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
 import 'package:food_delivery/components/custom_icon_and_text_widget.dart';
+import 'package:food_delivery/components/custom_skeleton.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/controller/recommended_product_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
@@ -19,9 +20,16 @@ class ListOfItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     RecommendedProductController myController = Get.find();
     return controller.isLoaded == false
-        ? const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.mainColor,
+        ? Container(
+            height: 200,
+            width: double.infinity,
+            child: ListView.separated(
+              padding: const EdgeInsets.all(18),
+              itemCount: 5,
+              itemBuilder: (context, index) => const NewsCardSkelton(),
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 40,
+              ),
             ),
           )
         : Container(
@@ -101,10 +109,10 @@ class ListOfItemsWidget extends StatelessWidget {
                                           size: 10.sp,
                                           color: Colors.black26,
                                         ),
-                                        Row(
+                                        const Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
-                                          children: const [
+                                          children: [
                                             IconAndTextWidget(
                                               iconData: Icons.circle_sharp,
                                               iconColor: AppColors.iconColor1,
