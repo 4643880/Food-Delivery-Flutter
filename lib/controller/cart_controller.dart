@@ -139,4 +139,14 @@ class CartController extends GetxController implements GetxService {
     //   return e.value;
     // }).toList();
   }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      final quantity = value.quantity;
+      final price = value.price;
+      total += quantity! * price!;
+    });
+    return total;
+  }
 }

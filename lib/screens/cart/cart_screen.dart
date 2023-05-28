@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_big_text.dart';
+import 'package:food_delivery/components/custom_bottom_bar_of_cart_screen.dart';
 import 'package:food_delivery/components/custom_icon_button.dart';
 import 'package:food_delivery/components/custom_small_text.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/controller/cart_controller.dart';
 import 'package:food_delivery/controller/popular_product_controller.dart';
+import 'package:food_delivery/controller/recommended_product_controller.dart';
 import 'package:food_delivery/helper/app_colors.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -115,10 +117,22 @@ class CartScreen extends StatelessWidget {
                       final eachItem = controller.getListOfCart[index];
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(
-                            RouteHelper.routeCartDetailsScreen,
-                            arguments: eachItem.product,
-                          );
+                          var popularItemIndex =
+                              Get.find<PopularProductController>()
+                                  .getPopularProductList
+                                  .indexOf(eachItem.product!);
+
+                          if (popularItemIndex >= 0) {
+                            Get.toNamed(
+                              RouteHelper.routePopularFoodDetials,
+                              arguments: eachItem.product,
+                            );
+                          } else {
+                            Get.toNamed(
+                              RouteHelper.routeRecommendedFoodDetails,
+                              arguments: eachItem.product,
+                            );
+                          }
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(vertical: 10).r,
@@ -183,8 +197,6 @@ class CartScreen extends StatelessWidget {
                                                     eachItem.product!,
                                                     -1,
                                                   );
-                                                  // controller.setQuantity(false);
-                                                  // print(controller.quantity);
                                                 },
                                                 child: const Icon(
                                                   Icons.remove,
@@ -209,8 +221,6 @@ class CartScreen extends StatelessWidget {
                                                     eachItem.product!,
                                                     1,
                                                   );
-                                                  // controller.setQuantity(true);
-                                                  // print(controller.quantity);
                                                 },
                                                 child: const Icon(
                                                   Icons.add,
@@ -237,6 +247,7 @@ class CartScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottonBarOfCartScreen(),
     );
   }
 }

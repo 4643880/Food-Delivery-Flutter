@@ -9,7 +9,8 @@ import 'package:food_delivery/models/product_model.dart';
 import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
 
-class RecommendedProductController extends GetxController {
+class RecommendedProductController extends GetxController
+    implements GetxService {
   final RecommendedProductRepo recommendedProductRepo;
 
   RecommendedProductController({required this.recommendedProductRepo});

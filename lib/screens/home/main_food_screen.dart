@@ -1,7 +1,6 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/components/custom_app_bar_header.dart';
+import 'package:food_delivery/screens/home/home_screen.dart';
 import 'package:food_delivery/components/custom_home_page_slider.dart';
 import 'package:food_delivery/components/custom_list_of_items.dart';
 import 'package:food_delivery/components/custom_popular_heading.dart';
@@ -11,14 +10,14 @@ import 'dart:developer' as devtools show log;
 
 import 'package:get/get.dart';
 
-class MainFoodPage extends StatefulWidget {
-  const MainFoodPage({super.key});
+class MainFoodScreen extends StatefulWidget {
+  const MainFoodScreen({super.key});
 
   @override
-  State<MainFoodPage> createState() => _MainFoodPageState();
+  State<MainFoodScreen> createState() => _MainFoodScreenState();
 }
 
-class _MainFoodPageState extends State<MainFoodPage> {
+class _MainFoodScreenState extends State<MainFoodScreen> {
   @override
   Widget build(BuildContext context) {
     // devtools.log(Get.context!.height.toString());

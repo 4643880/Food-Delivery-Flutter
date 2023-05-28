@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.6
   intl: ^0.18.1
+  persistent_bottom_nav_bar: ^5.0.2
   shimmer: ^3.0.0
 
 dev_dependencies:

@@ -70,7 +70,7 @@ class PopularFoodDetails extends StatelessWidget {
                           size: 50,
                           function: () {
                             if (controller.totalItems > 0) {
-                              Get.toNamed(RouteHelper.routeCartScreen);
+                              Get.offNamed(RouteHelper.routeCartScreen);
                             }
                           },
                         ),

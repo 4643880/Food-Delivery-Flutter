@@ -1,14 +1,15 @@
-import 'package:food_delivery/helper/bindings.dart';
-import 'package:food_delivery/screens/cart/cart_details_screen.dart';
 import 'package:food_delivery/screens/cart/cart_screen.dart';
 import 'package:food_delivery/screens/food/recommended_food_details.dart';
+import 'package:food_delivery/screens/home/home_screen.dart';
 import 'package:food_delivery/screens/home/main_food_screen.dart';
 import 'package:food_delivery/screens/food/popular_food_details_screen.dart';
+import 'package:food_delivery/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
   static const initial = "/";
   static const routeMainFoodScreen = "/mainFoodScreen";
+  static const routeHomeScreen = "/homeScreen";
   static const routePopularFoodDetials = "/popularFood";
   static const routeInternetNotAvailable = '/InternetNotAvailable';
   static const routeRecommendedFoodDetails = "/recommendFoodDetails";
@@ -18,12 +19,15 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(
       name: RouteHelper.initial,
-      // page: () => ResponsiveView(),
-      page: () => const MainFoodPage(),
+      page: () => const SplashScreen(),
     ),
     GetPage(
       name: RouteHelper.routeMainFoodScreen,
-      page: () => const MainFoodPage(),
+      page: () => const MainFoodScreen(),
+    ),
+    GetPage(
+      name: RouteHelper.routeHomeScreen,
+      page: () => const HomeScreen(),
     ),
     GetPage(
       name: RouteHelper.routePopularFoodDetials,
@@ -41,12 +45,12 @@ class RouteHelper {
       transitionDuration: const Duration(milliseconds: 400),
       transition: Transition.zoom,
     ),
-    GetPage(
-      name: RouteHelper.routeCartDetailsScreen,
-      page: () => CartDetailsScreen(),
-      transitionDuration: const Duration(milliseconds: 400),
-      transition: Transition.zoom,
-      // binding: CartBinding(),
-    ),
+    // GetPage(
+    //   name: RouteHelper.routeCartDetailsScreen,
+    //   page: () => CartDetailsScreen(),
+    //   transitionDuration: const Duration(milliseconds: 400),
+    //   transition: Transition.zoom,
+    //   // binding: CartBinding(),
+    // ),
   ];
 }

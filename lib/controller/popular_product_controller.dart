@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'dart:developer' as devtools show log;
 import '../data/repository/popular_product_repo.dart';
 
-class PopularProductController extends GetxController {
+class PopularProductController extends GetxController implements GetxService {
   RxBool isLoading = false.obs;
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;

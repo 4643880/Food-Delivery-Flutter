@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
-import 'package:food_delivery/controller/popular_product_controller.dart';
 import 'package:food_delivery/helper/get_di.dart' as di;
 import 'package:get/get.dart';
 
@@ -17,8 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PopularProductController controller = Get.find();
-    controller.getPopularProductListFunc();
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -37,4 +34,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// part 2 11 min
+// part 2 2:00 min
