@@ -1,9 +1,10 @@
+import 'package:food_delivery/login_signup_practice/screens/login_screen.dart';
+import 'package:food_delivery/login_signup_practice/screens/sushi_home_screen.dart';
 import 'package:food_delivery/screens/cart/cart_screen.dart';
 import 'package:food_delivery/screens/food/recommended_food_details.dart';
 import 'package:food_delivery/screens/home/home_screen.dart';
-import 'package:food_delivery/screens/home/main_food_screen.dart';
 import 'package:food_delivery/screens/food/popular_food_details_screen.dart';
-import 'package:food_delivery/screens/splash/splash_screen.dart';
+import 'package:food_delivery/login_signup_practice/screens/signup_screen.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
@@ -16,14 +17,39 @@ class RouteHelper {
   static const routeCartScreen = "/cartScreen";
   static const routeCartDetailsScreen = "/cartDetailsScreen";
 
+  // Sushi Practice
+  static const routeSignUp = "/signup";
+  static const routeLogin = "/login";
+  static const routeSushiHome = "/home";
+
   static List<GetPage> routes = [
+    // ===========================
+    //Shushi Practice
+    // ===========================
+    GetPage(
+      name: RouteHelper.routeSignUp,
+      page: () => SignupScreen(),
+    ),
+    GetPage(
+      name: RouteHelper.routeLogin,
+      page: () => LoginScreen(),
+    ),
+    GetPage(
+      name: RouteHelper.routeSushiHome,
+      page: () => const SushiHomeScreen(),
+    ),
+
+    // Sushi Practice Ends here
+    //===========================================
     GetPage(
       name: RouteHelper.initial,
-      page: () => const SplashScreen(),
+      page: () => SignupScreen(),
+      // page: () => const SplashScreen(),
     ),
     GetPage(
       name: RouteHelper.routeMainFoodScreen,
-      page: () => const MainFoodScreen(),
+      page: () => SignupScreen(),
+      // page: () => const MainFoodScreen(),
     ),
     GetPage(
       name: RouteHelper.routeHomeScreen,

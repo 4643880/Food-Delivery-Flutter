@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/helper/get_di.dart' as di;
@@ -21,7 +22,16 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
+        final easyLoading = EasyLoading.init();
         return GetMaterialApp(
+          builder: (context, child) {
+            EasyLoading.init();
+            child = easyLoading(context, child);
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.sp),
+              child: child,
+            );
+          },
           title: 'Food Delivery',
           debugShowCheckedModeBanner: false,
           initialRoute: RouteHelper.initial,
@@ -34,4 +44,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// part 2 2:00 min
+// part 2 2:55 min

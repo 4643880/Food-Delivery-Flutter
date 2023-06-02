@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:food_delivery/config/routes.dart';
 import 'package:food_delivery/utils/app_constants.dart';

@@ -14,6 +14,9 @@ class CartController extends GetxController implements GetxService {
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
+  // Stored Items in Shared Prefs
+  List<CartModel> storedItems = [];
+
   // Using this in the initProduct Function
   bool existInCart({required Products product}) {
     if (_items.containsKey(product.id)) {
@@ -96,14 +99,15 @@ class CartController extends GetxController implements GetxService {
             //   "Added Item to the Cart Quantity is: $quantity Product Name is: ${product.name}",
             // );
             return CartModel(
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                img: product.img,
-                quantity: quantity,
-                isExist: true,
-                time: DateTime.now().toString(),
-                product: product);
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              img: product.img,
+              quantity: quantity,
+              isExist: true,
+              time: DateTime.now().toString(),
+              product: product,
+            );
           },
         );
       }
@@ -112,6 +116,9 @@ class CartController extends GetxController implements GetxService {
         update();
       });
     }
+
+    // Saving list into Shared Prefs
+    Get.find<CartRepo>().addToCartList(getListOfCart);
 
     // Log Message
     // devtools.log("length is Items Map is ${_items.length}");
@@ -148,5 +155,26 @@ class CartController extends GetxController implements GetxService {
       total += quantity! * price!;
     });
     return total;
+  }
+
+  // Getting Data From Shared Prefs and Assigning to _items list of Controller
+  List<CartModel> getCartData() {
+    final result = Get.find<CartRepo>().getCartList();
+    setCart = result;
+    return storedItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storedItems = items;
+
+    for (int i = 0; i < storedItems.length; i++) {
+      // This will put information, when we'll start the app and in the beginning _items will be empty
+      _items.putIfAbsent(
+        storedItems[i].product!.id!,
+        () {
+          return storedItems[i];
+        },
+      );
+    }
   }
 }
